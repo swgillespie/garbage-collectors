@@ -1,0 +1,28 @@
+extern fn shorty_print_string(x: string);
+extern fn shorty_print_int(x: int);
+
+struct Node {
+    left: Node,
+    right: Node,
+    data: int
+}
+
+fn build_tree(depth: int) -> Node {
+    if (depth == 0) {
+        return nil;
+    }
+
+    let node = new Node;
+    node.left = build_tree(depth - 1);
+    node.right = build_tree(depth - 1);
+    node.data = depth;
+    return node;
+}
+
+fn main() {
+   shorty_print_string("preparing to build tree");
+   let tree = build_tree(25);
+   shorty_print_string("tree build complete!");
+   shorty_print_string("tree root node data: ");
+   shorty_print_int(tree.data);
+}
